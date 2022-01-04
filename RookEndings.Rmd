@@ -469,3 +469,23 @@ conf=confusionMatrix(
 kable(conf$table)
 ```
 Final model accuracy in predicting new games is 79%. Additionally, the model's errors are logical - the model is usually off by at most one or two moves. 
+```{r}
+table=conf$table
+df=data.frame(matrix(nrow=0,ncol=2))
+names(df)=c('Result','Prediction')
+levels=c("draw","zero","one","two","three","four","five", "six","seven", "eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen" )
+for(i in 1:18)
+  for(j in 1:18)
+    for(k in 1:table[i,j]){
+      if(table[i,j]!=0)
+      de<-data.frame(j-2,i-2+rnorm(1,0,0.3))
+      names(de)<-c("Result","Prediction")
+      df=rbind(df,de)
+    }
+ggplot(df, aes(factor(Result), Prediction))+geom_violin(fill='#7c945c')+ggtitle('Final prediction of games')+labs(caption='-1 means a draw')+xlab('True result')+ylab('Predicted result distribution')+theme(panel.background = element_rect(fill='#eeedd5'))
+df$Prediction[df$Result==0]
+```
+
+
+
+
