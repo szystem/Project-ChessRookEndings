@@ -442,7 +442,7 @@ for(i in 1:7)
 plot=plot+geom_bar(stat="identity",col='black',width=.7)+scale_fill_manual(values = c('white','#585351'))+ggtitle('Comparison of expected generalization risks of different models')
 print(plot)
 ```
-As the plot indicates, Information criterion is doing better than Gini. Treating variables as factors is better than treating them as numeric variables. Model with all variables is better than model with only pieces' coordinates. The best model is the one with pieces coordinates' and variables indicating whether its draw or mate. Relative Black King position is less informative than its position independent of White King.
+<br>As the plot indicates, Information criterion is doing better than Gini. Treating variables as factors is better than treating them as numeric variables. Model with all variables is better than model with only pieces' coordinates. The best model is the one with pieces coordinates' and variables indicating whether its draw or mate. Relative Black King position is less informative than its position independent of White King.
 
 ## Using the best model to predict new games
 Prediction of chess games is not an usual task for decision tree. As seen, uncommon models with minimal size of a bucket equal to one were doing the best. Thus, we don't expect model to be overfitting. So, we will use training and validation samples to train the best model and see how good it is in predicting compeletly new games from testing set.
