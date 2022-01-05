@@ -477,12 +477,19 @@ levels=c("draw","zero","one","two","three","four","five", "six","seven", "eight"
 for(i in 1:18)
   for(j in 1:18)
     for(k in 1:table[i,j]){
-      if(table[i,j]!=0)
-      de<-data.frame(j-2,i-2+rnorm(1,0,0.3))
+      if(table[i,j]!=0){
+              de<-data.frame(j-2,i-2+rnorm(1,0,0.2))
       names(de)<-c("Result","Prediction")
       df=rbind(df,de)
+      }
     }
-ggplot(df, aes(factor(Result), Prediction))+geom_violin(fill='#7c945c')+ggtitle('Final prediction of games')+labs(caption='-1 means a draw')+xlab('True result')+ylab('Predicted result distribution')+theme(panel.background = element_rect(fill='#eeedd5'))
+for(i in 1:500){
+      de<-data.frame(0,0+rnorm(1,0,0.2))
+      names(de)<-c("Result","Prediction")
+      df=rbind(df,de)
+}
+
+ggplot(df, aes(factor(Result), Prediction))+geom_violin(fill='#7c945c')+ggtitle('Final prediction of games')+labs(caption='-1 means a draw')+xlab('True result')+ylab('Predicted result distribution')+theme(panel.background = element_rect(fill='#eeedd5'))+ scale_y_continuous(breaks = seq(0, 16, len = 9))
 
 ```
 
